@@ -108,7 +108,6 @@ class RecorderViewController @Inject constructor(
             refreshAudios()
         }
     }
-
     private fun refreshAudios() {
         val fileList =
             fragment.requireContext().filesDir.listFiles { _, s -> s.endsWith(".mp3") }
@@ -121,30 +120,9 @@ class RecorderViewController @Inject constructor(
                 name = fileName,
                 creationDate = creationDate
             )
-            val dur = getSongList()
             records.add(tmpRecord)
         }
         adapter.recordList = records
     }
 
-    fun getSongList(): List<Pair<String, String>> {
-        val durations = mutableListOf<Pair<String, String>>()
-        //retrieve song info
-        val musicResolver: ContentResolver = fragment.requireActivity().contentResolver
-        val musicUri: Uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-        val musicCursor: Cursor? = musicResolver.query(musicUri, null, null, null, null)
-        if (musicCursor != null && musicCursor.moveToFirst()) {
-            val titleColumn: Int = musicCursor.getColumnIndex(MediaStore.Audio.Media.TITLE)
-            val duration: Int = musicCursor.getColumnIndex(MediaStore.Audio.Media.DURATION)
-            val artistColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST)
-            do {
-                val thisDuration: Long = musicCursor.getLong(duration)
-                val thisTitle: String = musicCursor.getString(titleColumn)
-                val thisArtist: String = musicCursor.getString(artistColumn)
-//                if (thisArtist)
-                durations.add(Pair(thisTitle,thisArtist))
-            } while (musicCursor.moveToNext())
-        }
-        return durations
-    }
 }

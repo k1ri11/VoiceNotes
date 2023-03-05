@@ -58,5 +58,3 @@ class RecorderFragment : Fragment() {
     }
 
 }
-
-// todo: папка сейва, кнопка play,stop, может быть длительность
