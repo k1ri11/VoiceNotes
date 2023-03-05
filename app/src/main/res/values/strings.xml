@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">VoiceNotes</string>
+
+    <string name="et_name_hint">Введите название заметки</string>
+    <string name="record_audio">Записать аудио</string>
+    <string name="record_duration_text">5:28</string>
+    <string name="player_error_text">Упс, что-то пошло не так при воспроизведении аудио</string>
+    <string name="recorder_error_text">Упс, что-то пошло не так при записи аудио</string>
+</resources>
